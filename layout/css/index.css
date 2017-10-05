@@ -9,24 +9,69 @@ body {
 }
 
 /* TODO: tell the browser to include borders and padding in size calculations */
-
+* {
+    box-sizing: border-box;
+}
 /* TODO: constrain the width of <div class="container"> elements to a max of 1140px
 and keep the content horizontally-centered with 1rem of padding on left/right */
 
+.container {
+    max-width: 1140px;
+    margin:0, auto;
+    padding: 0, 1rem;
+}
 /* TODO: set background image of the <header> to `header.jpg` in the `img` directory,
 and set text color to white, and ensure the height is at least 200px */
+
+header {
+    background-color: #034975;
+    color: #FFF;
+}
+
+main, header{
+    transition: transform 500ms;
+}
 
 /* TODO: set the font size of the <h1> in the <header> to 5rem
 and the font weight to 200 */
 
+header h1 {
+    font-size: 2rem;
+    font-weight: 200;
+    margin: 0;
+}
+
+header .page-title {
+    flex: 1;
+}
+
 /* TODO: set the height of the SVG icon to 3rem */
+
+header svg {
+    height: 2rem;
+    fill: currentColor;
+}
 
 /* TODO: make the color of the hyperlink icon white instead of blue
 and when it has focus/hover change the color to #FF9800, 
 from Material Design Color Palette: 
 https://material.io/guidelines/style/color.html#color-color-palette */
 
+header a{
+    color: #FFF;
+    transition: all 500ms;
+}
+
+header a:hover, header a:focus{
+    color: #FF9800
+}
+
 /* TODO: make the <div class="col"> elements layout side-by-side instead of stacked */
+
+header .container {
+    display: flex;
+    align-items: center;
+}
 
 .col {
     background-color: #FF9800; 
@@ -34,8 +79,94 @@ https://material.io/guidelines/style/color.html#color-color-palette */
     min-height: 150px;
     font-weight: 600;
     color: #FFF;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.row {
+    /* display: flex; */
+    justify-content: flex-end;
+}
+
+header .lead{
+    display: none;
 }
 
 /* TODO: set the background color of every-other <div class="col"> element 
 to #E65100 so that we can see where the column begin/end */
 
+.col:nth-of-type(odd) { 
+    background-color: #e65100;
+}
+
+nav {
+    background-color: #034975;
+    color: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    transform: translateX(-250px);
+    transition: transform 500ms;
+    z-index: 1;
+}
+
+.drawer-open nav {
+    transform: translateX(0);
+}
+
+.drawer-open header,
+.drawer-open main {
+    transform: translateX(250px);
+}
+
+header button{
+    color: #FFF;
+    background-color: transparent;
+    border: none;
+}
+
+@media(min-width: 768px){
+    header {
+        background-image: url(../img/header.jpg);
+        background-size: cover;
+        min-height: 200px;
+    }
+
+    header h1 {
+        font-size: 5rem;
+    }
+
+    header svg {
+        height: 3rem;
+    }
+
+    header .lead{
+        display: inline;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col{
+        flex: 50%;
+    }
+}
+
+@media(min-width: 992px){
+
+    .col{
+        flex-grow:33%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col{
+        flex: 1;
+    }
+}
